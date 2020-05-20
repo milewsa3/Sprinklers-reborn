@@ -84,29 +84,22 @@ public class GardenBox {
         //do zrobienia
         canvas.setWidth(INIT_WIDTH*SCALE);
         canvas.setHeight(INIT_HEIGHT*SCALE);
-        canvas.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("ENTERED");
-            }
-        });
 
         //applay clipping
-        final Rectangle outputClip = new Rectangle();
-        /*outputClip.setArcWidth(arc);
-        outputClip.setArcHeight(arc);
-        */
-        canvas.setClip(outputClip);
-
-        canvas.layoutBoundsProperty().addListener((ov, oldValue, newValue) -> {
-            outputClip.setWidth(newValue.getWidth());
-            outputClip.setHeight(newValue.getHeight());
-        });
+//        final Rectangle outputClip = new Rectangle();
+//
+//        canvas.setClip(outputClip);
+//
+//        canvas.layoutBoundsProperty().addListener((ov, oldValue, newValue) -> {
+//            outputClip.setWidth(newValue.getWidth());
+//            outputClip.setHeight(newValue.getHeight());
+//        });
     }
 
     private void initGraphicalContext(GraphicsContext graphicsContext) {
         //do zrobienia
         graphicsContext.setFill(Color.web(GRASS_COLOR));
+        graphicsContext.fillRect(0,0,canvas.getWidth(),canvas.getHeight());
     }
 
     private void initMonitoredLabel(Node monitored, Label reporter) {

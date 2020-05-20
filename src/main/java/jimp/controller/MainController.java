@@ -108,7 +108,5 @@ public class MainController implements Initializable {
 
         alertLabel.setVisible(false);
         gardenBox = new GardenBox(canvas,mousePosLabel,alertLabel);
-
-
     }
 }

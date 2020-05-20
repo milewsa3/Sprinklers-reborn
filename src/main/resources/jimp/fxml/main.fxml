@@ -107,11 +107,11 @@
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="55.0" prefWidth="86.0">
+            <HBox alignment="BOTTOM_LEFT" maxWidth="-Infinity" prefHeight="55.0" prefWidth="221.0">
                <children>
-                  <Label fx:id="mousePosLabel" text="Mouse pos:">
+                  <Label fx:id="mousePosLabel" prefHeight="27.0" prefWidth="222.0" text="Mouse pos:">
                      <font>
-                        <Font name="System Italic" size="18.0" />
+                        <Font name="System Italic" size="14.0" />
                      </font>
                   </Label>
                </children>
