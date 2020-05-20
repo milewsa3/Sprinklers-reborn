@@ -1,11 +1,13 @@
 package jimp.model;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Light;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -13,6 +15,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,6 +130,16 @@ public class GardenBox {
     }
 
     public void removeObstacle() {
+    }
+
+    public void onSave(String fileName) {
+        try {
+            Image snapshot = canvas.snapshot(null,null);
+
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot,null),"png",new File("src/main/resources/jimp/" + fileName +".png"));
+        } catch(IOException exc) {
+            System.out.println("Failed to save image: " + exc);
+        }
     }
 
     public Canvas getCanvas() {

@@ -20,5 +20,5 @@ application {
 }
 
 javafx {
-    modules = [ 'javafx.controls', 'javafx.fxml','javafx.media' ]
+    modules = [ 'javafx.controls', 'javafx.fxml','javafx.media','javafx.swing' ]
 }

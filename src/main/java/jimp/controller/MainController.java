@@ -99,6 +99,8 @@ public class MainController implements Initializable {
     @FXML
     void startAction(ActionEvent event) {
         System.out.println("Calculactions started");
+        //working image saving!
+        gardenBox.onSave("Before");
     }
 
     @Override
