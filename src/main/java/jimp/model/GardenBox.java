@@ -13,6 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
 
 import javax.imageio.ImageIO;
@@ -23,6 +25,7 @@ import java.util.List;
 
 public class GardenBox {
     private final double SCALE = 0.1;
+    private final int SKALA = 10;
     private final int INIT_WIDTH = 8000;
     private final int INIT_HEIGHT = 4000;
     private final String GRASS_COLOR = "#1bc904";
@@ -32,7 +35,6 @@ public class GardenBox {
     private GraphicsContext graphicsContext;
     private final Label mousePosLabel;
     private final Label alertLabel;
-
     private List<Rectangle> obstacleList;
 
     public GardenBox(Canvas canvas, Label mousePosLabel,Label alertLabel) {
@@ -130,6 +132,45 @@ public class GardenBox {
     }
 
     public void removeObstacle() {
+    }
+
+    static  int ktory = 0;
+
+    public void drawRectangle(){
+        GraphicsContext gc = graphicsContext;
+        if(ktory==0) {
+            Rectangle rect = new Rectangle(100, 200, 200, 150);
+            gc.setFill(Color.WHITESMOKE);
+            gc.fillRect(rect.getX(),
+                    rect.getY(),
+                    rect.getWidth(),
+                    rect.getHeight());
+            gc.setFill(Color.GREEN);
+            gc.setStroke(Color.BLUE);
+            ktory++;
+            System.out.println("siema");
+        }
+        else{
+            for(int i=0;i<255;i+=10) {
+                gc.setFill(Color.GREEN);
+                gc.fillRect(0, 0, 800, 400);
+                Rectangle rect = new Rectangle(333, 30, 200, 150);
+                gc.setFill(Color.rgb(255,i,255));
+                gc.fillRect(rect.getX(),
+                        rect.getY(),
+                        rect.getWidth(),
+                        rect.getHeight());
+                gc.setFill(Color.GREEN);
+                gc.setStroke(Color.BLUE);
+                System.out.println("siewsadama");
+                try {
+                    Thread.sleep(100);
+                }
+                catch (Exception e){
+
+                }
+            }
+        }
     }
 
     public void onSave(String fileName) {

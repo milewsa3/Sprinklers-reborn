@@ -101,7 +101,9 @@ public class MainController implements Initializable {
         System.out.println("Calculactions started");
         //working image saving!
         gardenBox.onSave("Before");
+        Main.startCalculations(gardenBox);
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
