@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -15,13 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jimp.controller.MainController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jimp.controllers.MainController">
    <top>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="topPane" alignment="CENTER_LEFT" spacing="14.0" style="-fx-background-color: #535353;">
+            <HBox alignment="CENTER_LEFT" spacing="14.0" style="-fx-background-color: #535353;">
                <children>
-                  <HBox alignment="CENTER">
+                  <HBox fx:id="headBar" alignment="CENTER" onMouseDragged="#headbarEntered" onMouseEntered="#headbarEntered" onMouseExited="#headbarExited">
                      <children>
                         <Label fx:id="jimpLabel" prefWidth="560.0" text="GENERATOR ZRASZACZY" textFill="WHITE">
                            <font>
@@ -30,7 +29,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Region prefHeight="70.0" prefWidth="475.0" />
+                  <Region fx:id="headbarRegion" onMouseDragged="#headbarEntered" onMouseEntered="#headbarEntered" onMouseExited="#headbarExited" prefHeight="70.0" prefWidth="475.0" />
                   <ImageView id="minimize" fx:id="minimizeBt" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/minimize.png" />
@@ -51,111 +50,67 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Liczba cykli" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
                         </Label>
-                        <Slider fx:id="cycleSlider" blockIncrement="5.0" majorTickUnit="10.0" maxHeight="30.0" maxWidth="300.0" min="1.0" minHeight="30.0" minWidth="300.0" minorTickCount="1" prefHeight="30.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                        <Slider fx:id="cycleSlider" blockIncrement="1.0" majorTickUnit="10.0" maxHeight="30.0" maxWidth="300.0" min="1.0" minHeight="30.0" minWidth="300.0" minorTickCount="1" prefHeight="30.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
                      </children>
                      <HBox.margin>
-                        <Insets left="50.0" right="20.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                   </VBox>
+                  <CheckBox fx:id="odbicieCheck" alignment="CENTER" contentDisplay="CENTER" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#odbicieKlik" prefWidth="80.0" text="Odbicie" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets left="20.0" right="10.0" top="50.0" />
+                     </HBox.margin>
+                  </CheckBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="Odbicia" />
+                        <Label text="Czas cyklu" />
+                        <TextField fx:id="cycleTimeField" alignment="CENTER" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="80.0" text="1">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Czas cyklu" textAlignment="CENTER" />
-                        <TextField maxHeight="30.0" minHeight="30.0" prefHeight="30.0" />
-                     </children>
-                     <HBox.margin>
-                        <Insets right="20.0" />
                      </HBox.margin>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Szerokość ogrodu" />
-                        <TextField alignment="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" fx:id="xTextField" />
+                        <TextField alignment="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" text="8000" fx:id="xTextField" />
                      </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Długość ogrodu" />
-                        <TextField fx:id="yTextField" alignment="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" />
+                        <TextField fx:id="yTextField" alignment="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" text="4000" />
                      </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </VBox>
-                  <Button fx:id="changeSizeButton" maxWidth="120.0" minWidth="120.0" mnemonicParsing="false" onAction="#changeSizeGardenBox" prefWidth="120.0" text="Zmień rozmiar">
-                     <HBox.margin>
-                        <Insets left="20.0" top="40.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="startButton" mnemonicParsing="false" onAction="#startAction" prefHeight="25.0" prefWidth="108.0" text="Start">
+                  <Button fx:id="changeSizeButton" maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#changeSizeGardenBox" prefWidth="100.0" text="Zmień rozmiar">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" top="40.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="startButton" maxWidth="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#startAction" prefWidth="50.0" text="Start">
+                     <HBox.margin>
+                        <Insets right="20.0" top="40.0" />
                      </HBox.margin></Button>
                </children>
             </HBox>
          </children>
       </VBox>
    </top>
-   <center>
-      <Canvas fx:id="canvas" height="400.0" width="800.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin></Canvas>
-   </center>
-   <bottom>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="BOTTOM_LEFT" maxWidth="-Infinity" prefHeight="55.0" prefWidth="221.0">
-               <children>
-                  <Label fx:id="mousePosLabel" prefHeight="27.0" prefWidth="222.0" text="Mouse pos:">
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-               <HBox.margin>
-                  <Insets bottom="7.0" left="7.0" />
-               </HBox.margin>
-            </HBox>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="16.0" prefWidth="272.0">
-               <HBox.margin>
-                  <Insets left="400.0" />
-               </HBox.margin>
-               <children>
-                  <Label fx:id="alertLabel" text="Alert" textFill="RED">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-            </HBox>
-         </children>
-      </HBox>
-   </bottom>
 </BorderPane>
