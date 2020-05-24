@@ -60,6 +60,8 @@ public class Main extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.SOUTH,2000,1000);
+        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.WEST,2500,1000);
     }
 
     //magia ktora sie dzieje po wcisnieciu przycisk start w UI
@@ -67,10 +69,9 @@ public class Main extends Application {
         GardenGrass gg = new GardenGrass(gardenBox);
 
         //sc.calc(new Sprinkler(1000,1000,0,Angle.ANGLE_270,Direction.EAST),new Sprinkler(1000,1000,0,Angle.ANGLE_270,Direction.EAST));
+        gardenBox.usun();
         gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.NORTH,1000,1000);
         gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.EAST,1500,1000);
-        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.SOUTH,2000,1000);
-        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.WEST,2500,1000);
         //gardenBox.startAnimation(cycles,cycleTime);
 
     }

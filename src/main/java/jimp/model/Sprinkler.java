@@ -62,7 +62,7 @@ public class Sprinkler implements Comparable<Sprinkler> {
         }
     }
 
-    
+
 
     public void calcScore(GardenGrass gardenGrass) {
         for (int i = (this.y - this.angle.getRadius()); i <= (this.y + this.angle.getRadius()); i++)
@@ -177,6 +177,62 @@ public class Sprinkler implements Comparable<Sprinkler> {
     // true jesli jest przeszkoda
     private boolean check_obstacle(GardenGrass gardenGrass, int x, int y) {
 
+        int ty, tx, prec = 30;
+        if(!gardenGrass.getGrass(x,y)){
+            return true;
+        }
+        if(this.x <= x && this.y >= y)
+        {
+            tx = x;
+            while (tx - this.x >= 0){
+                ty = y;
+                while(this.y - ty >= 0){
+                    if (!gardenGrass.getGrass(tx,ty))
+                        return true;
+                    ty += prec;
+                }
+                tx -= prec;
+            }
+        }
+        if(this.x > x && this.y > y)
+        {
+            tx = x;
+            while (this.x - tx >= 0){
+                ty = y;
+                while(this.y - ty >= 0){
+                    if (!gardenGrass.getGrass(tx,ty))
+                        return true;
+                    ty += prec;
+                }
+                tx += prec;
+            }
+        }
+        if(this.x >= x && this.y <= y)
+        {
+            tx = x;
+            while (this.x - tx >= 0){
+                ty = y;
+                while(ty - this.y >= 0){
+                    if (!gardenGrass.getGrass(tx,ty))
+                        return true;
+                    ty -= prec;
+                }
+                tx += prec;
+            }
+        }
+        if(this.x < x && this.y < y)
+        {
+            tx = x;
+            while (tx - this.x >= 0){
+                ty = y;
+                while(ty - this.y >= 0){
+                    if (!gardenGrass.getGrass(tx,ty))
+                        return true;
+                    ty -= prec;
+                }
+                tx -= prec;
+            }
+        }
         return false;
     }
 

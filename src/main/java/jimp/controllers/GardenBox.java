@@ -81,8 +81,10 @@ public class GardenBox extends VBox{
         });
     }
 
+    //czysci zraszacze z gardenBox
     public void usun(){
-        ((Pane)gardenRegion).getChildren().remove(obstacles.get(0));
+        for(Shape shape: sprinklers)
+        ((Pane)gardenRegion).getChildren().remove(shape);
     }
 
     public void addSprinklerShape(Angle angle, Direction direction, int x, int y) {
@@ -166,6 +168,7 @@ public class GardenBox extends VBox{
                 shape.setStartAngle(offset);
                 break;
         }
+        shape.toBack();
         ((Pane)gardenRegion).getChildren().add(shape);
         sprinklers.add(shape);
     }

@@ -95,6 +95,14 @@ public class GardenGrass {
         }
     }
 
+    void cleanSums() {
+        for (int i = 0; i < xl; i++) {
+            for (int j = 0; j < yl; j++) {
+                sum[i][j] = 0;
+            }
+        }
+    }
+
 
 
 }
