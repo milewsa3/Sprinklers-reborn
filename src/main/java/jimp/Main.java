@@ -3,20 +3,17 @@ package jimp;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.effect.Light;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jimp.controllers.GardenBox;
 import jimp.model.Angle;
 import jimp.model.Direction;
+import jimp.model.GardenGrass;
+import jimp.model.Sprinkler;
 
 import java.io.IOException;
 
@@ -67,9 +64,12 @@ public class Main extends Application {
 
     //magia ktora sie dzieje po wcisnieciu przycisk start w UI
     public static void startCalculations() {
+        GardenGrass gg = new GardenGrass(gardenBox);
 
-        gardenBox.addSprinklerShape(Angle.ANGLE_90,Direction.EAST,1000,1000);
-        gardenBox.startAnimation(cycles,cycleTime);
+        //sc.calc(new Sprinkler(1000,1000,0,Angle.ANGLE_270,Direction.EAST),new Sprinkler(1000,1000,0,Angle.ANGLE_270,Direction.EAST));
+        //gardenBox.addSprinklerShape(Angle.ANGLE_90,Direction.EAST,1000,1000);
+        //gardenBox.startAnimation(cycles,cycleTime);
+
     }
 
     //metoda odpowiedzialna za brak ramki
