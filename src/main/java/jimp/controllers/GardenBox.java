@@ -89,27 +89,43 @@ public class GardenBox extends VBox{
         Arc shape = new Arc();
         shape.setFill(Color.rgb(0,255,0,1));
         shape.setType(ArcType.ROUND);
+        double offset = 0f;
         switch (direction){
             case NORTH:
-                shape.setStartAngle(0f);
+                offset=0f;
                 break;
             case EAST:
-                shape.setStartAngle(90f);
+                offset=90f;
                 break;
             case SOUTH:
-                shape.setStartAngle(180f);
+                offset=180f;
                 break;
             case WEST:
-                shape.setStartAngle(270f);
+                offset=270f;
                 break;
         }
         switch (angle){
             case ANGLE_90:
+                switch (direction){
+                    case NORTH:
+                        offset=0f;
+                        break;
+                    case EAST:
+                        offset=270f;
+                        break;
+                    case SOUTH:
+                        offset=180f;
+                        break;
+                    case WEST:
+                        offset=90f;
+                        break;
+                }
                 shape.setCenterY(y/SKALA);
                 shape.setCenterX(x/SKALA);
                 shape.setRadiusX(50.0f);
                 shape.setRadiusY(50.0f);
                 shape.setLength(90.0f);
+                shape.setStartAngle(offset);
                 break;
             case ANGLE_180:
                 shape.setCenterY(y/10);
@@ -117,13 +133,29 @@ public class GardenBox extends VBox{
                 shape.setRadiusX(40.0f);
                 shape.setRadiusY(40.0f);
                 shape.setLength(180.0f);
+                shape.setStartAngle(offset);
                 break;
             case ANGLE_270:
+                switch (direction){
+                    case NORTH:
+                        offset=270f;
+                        break;
+                    case EAST:
+                        offset=180f;
+                        break;
+                    case SOUTH:
+                        offset=90f;
+                        break;
+                    case WEST:
+                        offset=0f;
+                        break;
+                }
                 shape.setCenterY(y/SKALA);
                 shape.setCenterX(x/SKALA);
                 shape.setRadiusX(30.0f);
                 shape.setRadiusY(30.0f);
                 shape.setLength(270.0f);
+                shape.setStartAngle(offset);
                 break;
             case ANGLE_360:
                 shape.setCenterY(y/SKALA);
@@ -131,6 +163,7 @@ public class GardenBox extends VBox{
                 shape.setRadiusX(20.0f);
                 shape.setRadiusY(20.0f);
                 shape.setLength(360.0f);
+                shape.setStartAngle(offset);
                 break;
         }
         ((Pane)gardenRegion).getChildren().add(shape);

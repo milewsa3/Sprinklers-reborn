@@ -67,7 +67,10 @@ public class Main extends Application {
         GardenGrass gg = new GardenGrass(gardenBox);
 
         //sc.calc(new Sprinkler(1000,1000,0,Angle.ANGLE_270,Direction.EAST),new Sprinkler(1000,1000,0,Angle.ANGLE_270,Direction.EAST));
-        //gardenBox.addSprinklerShape(Angle.ANGLE_90,Direction.EAST,1000,1000);
+        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.NORTH,1000,1000);
+        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.EAST,1500,1000);
+        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.SOUTH,2000,1000);
+        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.WEST,2500,1000);
         //gardenBox.startAnimation(cycles,cycleTime);
 
     }

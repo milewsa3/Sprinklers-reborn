@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 /* Klasa będąca "wypaloną płytką" tego co narysował użytkownik prostokątami w GUI */
+/* Klasa z macierza traw i sum potrzebnych do obliczenia wyniku spryskiwaczy*/
 public class GardenGrass {
     private int xl;
     private int yl;
@@ -63,7 +64,7 @@ public class GardenGrass {
             }
             System.out.println();
         }
-        
+
          */
     }
 
