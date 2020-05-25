@@ -74,8 +74,9 @@ public class Sprinkler implements Comparable<Sprinkler> {
                     switch (this.angle) {
                         case ANGLE_360:
                             if (check_obstacle(gardenGrass, j, i) == false) {
-                                gardenGrass.addSum(j, i, 1);
+                                if(gardenGrass.getSum(j,i)==0)
                                 this.score++;
+                                gardenGrass.addSum(j, i, 1);
                             }
                             break;
                         case ANGLE_270:

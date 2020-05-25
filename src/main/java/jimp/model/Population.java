@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Population {
 
-    final int dead_score[] = { 80000, 140000, 150000, 120000 };
+    final int dead_score[] = { 30000, 100000, 80000, 50000 };
 
     private List<Sprinkler> sprinklerList;
     int speed;
@@ -26,14 +26,19 @@ public class Population {
                 sprinklerList.add(new Sprinkler(r, gardenGrass));
             }
             for (int i = 0; i < 400; i++) {
-                System.out.println("Iteracja nr: " + i + "rozmiar pop: " + sprinklerList.size());
-                System.out.println(this.printSprinklers());
-                for (int j = 0; j < 20; j++) {
-                    sprinklerList.add(new Sprinkler(r, gardenGrass));
-                }
-                calcPopScore(gardenGrass);
-                Collections.sort(this.sprinklerList);
-                terminator(true,speed);
+                    for (int j = 0; j < 20; j++) {
+                        sprinklerList.add(new Sprinkler(r, gardenGrass));
+                    }
+                    for(int k=0;k<10;k++) {
+                        calcPopScore(gardenGrass);
+                        Collections.sort(this.sprinklerList);
+                        terminator();
+                        if(sprinklerList.size()>0) {
+                            if (sprinklerList.get(sprinklerList.size() - 1).getScore() > dead_score[0])
+                                break;
+                        }
+                    }
+
                 if(prevPopSize==sprinklerList.size())
                     watchdog++;
                 else
@@ -42,25 +47,22 @@ public class Population {
                 if(watchdog>10)
                     break;
                 prevPopSize = sprinklerList.size();
+
+                //System.out.println("Iteracja nr: " + i + "rozmiar pop: " + sprinklerList.size());
+                //System.out.println(this.printSprinklers());
             }
-            Collections.sort(this.sprinklerList);
-            calcPopScore(gardenGrass);
-            System.out.println(this.printSprinklers());
+
+            //System.out.println(this.printSprinklers());
         }
     }
 
-    private void terminator(boolean butcher, int speed){
+    private void terminator(){
         for(int i =0; i< sprinklerList.size(); i++){
             if(sprinklerList.get(i).getScore() < dead_score[sprinklerList.get(i).getType().getType()]){
                 sprinklerList.remove(sprinklerList.get(i));
             }
-            if(butcher){
-                if(speed>sprinklerList.size()){
-                for(int j=0;j<speed;j++)
-                    sprinklerList.remove(sprinklerList.size()-j);
-            }
-            }
         }
+        //System.out.println ("wynik ostatniego : " + sprinklerList.get(sprinklerList.size()-1).getScore() );
 
     }
     private void calcPopScore(GardenGrass gg){

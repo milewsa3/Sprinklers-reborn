@@ -60,6 +60,7 @@ public class GardenBox extends VBox{
             selection.setFill(null); // transparent
             selection.setStroke(Color.BLACK); // border
             selection.getStrokeDashArray().add(10.0);
+            ((Pane)gardenRegion).getChildren().add(selection);
         });
 
         ((Pane)gardenRegion).setOnMouseDragged(event -> {

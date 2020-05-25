@@ -32,7 +32,7 @@ public class GardenGrass {
         int x1,x2,y1,y2;
         this.fillGrass();
         for(Rectangle rect : gardenBox.getObstacles()){
-            System.out.println(rect.toString());
+            //System.out.println(rect.toString());
 
             //wartosci krawedzi prostokatow i sprawdzenie warunkow granicznych
             x1=(int)(rect.getX()*SKALA);
