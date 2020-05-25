@@ -28,6 +28,7 @@ public class GardenGrass {
         this.xl=gardenBox.getX();
         this.yl=gardenBox.getY();
         this.grass = new boolean[this.xl][this.yl];
+        this.sum = new int[this.xl][this.yl];
         int x1,x2,y1,y2;
         this.fillGrass();
         for(Rectangle rect : gardenBox.getObstacles()){
@@ -54,36 +55,49 @@ public class GardenGrass {
                 }
             }
         }
-        /*
         for(int j=0;j<this.yl;j++) {
         for(int i=0;i<this.xl;i++){
                 if (this.grass[i][j])
-                    System.out.print("1");
-                else
-                    System.out.print("_");
+                    this.grassBlocks++;
             }
-            System.out.println();
         }
 
-         */
     }
 
     public void setGrass(int x,int y,boolean val) {
         grass[x][y] = val;
     }
 
-    public boolean getGrass(int x,int y) {
+    public int getXl() {
+        return xl;
+    }
+
+    public int getYl() {
+        return yl;
+    }
+
+    public int getGrassBlocks() {
+        return grassBlocks;
+    }
+
+    public boolean getGrass(int x, int y) {
+        if(x>=0&&x<xl&&y>=0&&y<yl)
         return grass[x][y];
+        else return false;
     }
     public void setSum(int x, int y, int val) {
         sum[x][y] = val;
     }
 
     public int getSum(int x, int y) {
+
+        if(x>=0&&x<xl&&y>=0&&y<yl)
         return sum[x][y];
+        else return 0;
     }
 
     public void addSum(int x,int y,int val) {
+        if(x>=0&&x<xl&&y>=0&&y<yl)
         sum[x][y] += val;
     }
 

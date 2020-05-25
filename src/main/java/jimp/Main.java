@@ -10,10 +10,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jimp.controllers.GardenBox;
-import jimp.model.Angle;
-import jimp.model.Direction;
-import jimp.model.GardenGrass;
-import jimp.model.Sprinkler;
+import jimp.model.*;
 
 import java.io.IOException;
 
@@ -60,20 +57,15 @@ public class Main extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.SOUTH,2000,1000);
-        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.WEST,2500,1000);
     }
 
     //magia ktora sie dzieje po wcisnieciu przycisk start w UI
     public static void startCalculations() {
         GardenGrass gg = new GardenGrass(gardenBox);
-
-        //sc.calc(new Sprinkler(1000,1000,0,Angle.ANGLE_270,Direction.EAST),new Sprinkler(1000,1000,0,Angle.ANGLE_270,Direction.EAST));
-        gardenBox.usun();
-        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.NORTH,1000,1000);
-        gardenBox.addSprinklerShape(Angle.ANGLE_270,Direction.EAST,1500,1000);
-        //gardenBox.startAnimation(cycles,cycleTime);
-
+        Population pop = new Population(gg);
+        pop.drawPopulation(gardenBox);
+        gardenBox.startAnimation(cycles,cycleTime);
+        System.out.println(pop.printSprinklers());
     }
 
     //metoda odpowiedzialna za brak ramki

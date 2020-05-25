@@ -24,9 +24,11 @@ public class Sprinkler implements Comparable<Sprinkler> {
         this.direction = direction;
     }
 
-    public Sprinkler(Random r, int maxX, int maxY) {
-        this.x = r.nextInt(maxX);
-        this.y = r.nextInt(maxY);
+    public Sprinkler(Random r, GardenGrass gg) {
+        do{
+            this.x = r.nextInt(gg.getXl());
+            this.y = r.nextInt(gg.getYl());
+        } while (!gg.getGrass(x,y));
 
         this.score = 0;
 
@@ -65,6 +67,7 @@ public class Sprinkler implements Comparable<Sprinkler> {
 
 
     public void calcScore(GardenGrass gardenGrass) {
+        this.score = 0;
         for (int i = (this.y - this.angle.getRadius()); i <= (this.y + this.angle.getRadius()); i++)
             for (int j = (this.x - this.angle.getRadius()); j <= (this.x + this.angle.getRadius()); j++) {
                 if (((j - this.x) * (j - this.x) + (i - this.y) * (i - this.y)) < (this.angle.getRadius() * this.angle.getRadius())) {
@@ -237,7 +240,7 @@ public class Sprinkler implements Comparable<Sprinkler> {
     }
 
     public int compareTo(Sprinkler s2) {
-        return (int) (score - s2.score);
+        return (int) (s2.score - score);
     }
 
     public double getScore() {

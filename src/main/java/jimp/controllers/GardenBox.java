@@ -70,7 +70,6 @@ public class GardenBox extends VBox{
         });
 
         ((Pane)gardenRegion).setOnMouseReleased(event -> {
-            // Do what you want with selection's properties here
             Rectangle obstacleRect = new Rectangle(selection.getX(), selection.getY(), selection.getWidth(), selection.getHeight());
             obstacleRect.setFill(Color.rgb(0,155,255,1));
             ((Pane)gardenRegion).getChildren().add(obstacleRect);
@@ -82,9 +81,10 @@ public class GardenBox extends VBox{
     }
 
     //czysci zraszacze z gardenBox
-    public void usun(){
+    public void clean(){
         for(Shape shape: sprinklers)
         ((Pane)gardenRegion).getChildren().remove(shape);
+        sprinklers.clear();
     }
 
     public void addSprinklerShape(Angle angle, Direction direction, int x, int y) {
@@ -182,7 +182,6 @@ public class GardenBox extends VBox{
             fill.setToValue(Color.rgb((int)cycles*255/100,255,(100-cycles),1));
             fill.setDuration(Duration.millis(frameTime*cycles));
             fill.setAutoReverse(false);
-            System.out.println(shape);
             fill.setShape(shape);
             fill.play();
         }
