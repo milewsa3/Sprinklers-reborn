@@ -1,10 +1,15 @@
 package jimp;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -12,9 +17,12 @@ import javafx.stage.StageStyle;
 import jimp.controllers.GardenBox;
 import jimp.model.*;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
-public class Main extends Application {
+public class Main extends Application{
     //ogarnianie borderless
     private double xOffset = 0;
     private double yOffset = 0;
@@ -29,7 +37,6 @@ public class Main extends Application {
     public static int cycles;
     //odstępy w milisekundach
     public static int cycleTime;
-
 
     public static void main(String[] args) {
         launch(args);
@@ -59,14 +66,24 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+
     //magia ktora sie dzieje po wcisnieciu przycisk start w UI
     public static void startCalculations() {
-        GardenGrass gg = new GardenGrass(gardenBox);
-        Population pop = new Population(gg);
-        pop.drawPopulation(gardenBox);
-        gardenBox.startAnimation(cycles,cycleTime);
-        System.out.println(pop.printSprinklers());
+        //checkParameters(gardenBox, cycles, cycleTime)
+        String filename = "sprinkler_stats.txt"; //maybe from GUI
+        ParallelCalculation pc = new ParallelCalculation(gardenBox, cycles, cycleTime, filename);
+        Thread t = new Thread(pc);
+
+        //Blokada GUI i pokazanie krecacego koleczka czy cos
+        //Blabla
+        //buttonblock
+
+
+        t.start(); //Odblokowanie GUI tutaj (w srodku), moze trzeba przekazac cos do Paralela jeszcze, nwm
+        
+
     }
+
 
     //metoda odpowiedzialna za brak ramki
     private void makeBorderless(Stage stage,Parent root) {

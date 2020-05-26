@@ -19,7 +19,7 @@ public class Population {
         sprinklerList = new ArrayList<>();
         speed = calcDeathSpeed(gardenGrass);
         int watchdog=0, prevPopSize=0;
-        System.out.println(gardenGrass.getGrassBlocks() + "  " + gardenGrass.getXl()*gardenGrass.getYl());
+        //System.out.println(gardenGrass.getGrassBlocks() + "  " + gardenGrass.getXl()*gardenGrass.getYl());
         if(gardenGrass.getGrassBlocks()>0) {
             Random r = new Random();
             for (int i = 0; i < 20; i++) {
@@ -110,7 +110,7 @@ public class Population {
                     dir = 'W';
                     break;
             }
-            wy += String.format("| %3d | %5d | %5d | %3c | %4d | %5d \n",i,sprinklerList.get(i).getX()+1,sprinklerList.get(i).getY(),dir,(int)sprinklerList.get(i).getType().getAngle(),(int)sprinklerList.get(i).getScore());
+            wy += String.format("| %3d | %5d | %5d | %3c | %4d |\n",i,sprinklerList.get(i).getX()+1,sprinklerList.get(i).getY(),dir,(int)sprinklerList.get(i).getType().getAngle()); //%5d (int)sprinklerList.get(i).getScore()
             }
         wy += "------------------------------------\n";
         return wy;
