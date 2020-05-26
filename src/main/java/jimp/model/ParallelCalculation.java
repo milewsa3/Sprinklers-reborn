@@ -29,8 +29,14 @@ public class ParallelCalculation implements Runnable{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                //Tutaj odblokowanie GUI, bo juz po obliczeniu to teraz animacja juz na czysto
+                //ublock lalala
+                
                 pop.drawPopulation(gb);
                 gb.startAnimation(cycles, cycleTime);
+
+
+
                 try{
                     PrintWriter out = new PrintWriter(filename);
                     out.println(pop.printSprinklers());

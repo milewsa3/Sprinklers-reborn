@@ -80,7 +80,7 @@ public class Main extends Application{
 
 
         t.start(); //Odblokowanie GUI tutaj (w srodku), moze trzeba przekazac cos do Paralela jeszcze, nwm
-        
+
 
     }
 
