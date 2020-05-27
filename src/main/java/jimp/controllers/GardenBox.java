@@ -33,6 +33,10 @@ public class GardenBox extends VBox{
     //Lista na rysowane przeszkody
     private List<Rectangle> obstacles;
 
+    private final Color obstacleColor = Color.rgb(0,155,255,1);
+    private final Color bgColor = Color.rgb(0,40,25);
+    private final Color sprinklerColor = Color.rgb(0,255,0,1);
+
     private int x;
     private int y;
 
@@ -72,7 +76,7 @@ public class GardenBox extends VBox{
 
         ((Pane)gardenRegion).setOnMouseReleased(event -> {
             Rectangle obstacleRect = new Rectangle(selection.getX(), selection.getY(), selection.getWidth(), selection.getHeight());
-            obstacleRect.setFill(Color.rgb(0,155,255,1));
+            obstacleRect.setFill(obstacleColor);
             ((Pane)gardenRegion).getChildren().add(obstacleRect);
             obstacles.add(obstacleRect);
             ((Pane)gardenRegion).getChildren().remove(selection);
@@ -90,7 +94,7 @@ public class GardenBox extends VBox{
 
     public void addSprinklerShape(Angle angle, Direction direction, int x, int y) {
         Arc shape = new Arc();
-        shape.setFill(Color.rgb(0,255,0,1));
+        shape.setFill(sprinklerColor);
         shape.setType(ArcType.ROUND);
         double offset = 0f;
         switch (direction){
@@ -222,7 +226,7 @@ public class GardenBox extends VBox{
 
     private Region createClipped(int width, int height) {
         final Pane pane = new Pane();
-        pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,40,25), CornerRadii.EMPTY, Insets.EMPTY)));
+        pane.setBackground(new Background(new BackgroundFill(bgColor, CornerRadii.EMPTY, Insets.EMPTY)));
         pane.setMaxSize(width,height);
         pane.setMinSize(width,height);
         //pane.setPrefSize(width,height);
@@ -243,5 +247,21 @@ public class GardenBox extends VBox{
 
     public List<Rectangle> getObstacles() {
         return obstacles;
+    }
+
+    public Color getObstacleColor() {
+        return obstacleColor;
+    }
+
+    public Color getBgColor() {
+        return bgColor;
+    }
+
+    public Color getSprinklerColor() {
+        return sprinklerColor;
+    }
+
+    public int getSKALA() {
+        return SKALA;
     }
 }

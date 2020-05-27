@@ -1,12 +1,23 @@
 package jimp.model;
 
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.EventHandler;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogEvent;
+import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
 import jimp.Main;
 import jimp.controllers.GardenBox;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 public class ParallelCalculation implements Runnable{
     private GardenBox gb;
@@ -50,13 +61,65 @@ public class ParallelCalculation implements Runnable{
                 alert.setTitle("Calculation finished!");
                 alert.show();
 
+                alert.setOnCloseRequest(new EventHandler<DialogEvent>() {
+                    @Override
+                    public void handle(DialogEvent event) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Image generated in resources folder");
+                        alert.setHeaderText("Image handling");
+                        alert.setTitle("Information");
+                        alert.show();
+
+                        saveImg();
+                    }
+                });
             }
         });
 
         Main.nThreads--;
+        saveImg();
     }
 
+    private void saveImg() {
+        Platform.runLater(() -> {
+            Canvas canvas = createCnvsBasedOnGb();
 
+            try {
+                Image snapshot = canvas.snapshot(null,null);
+
+                ImageIO.write(SwingFXUtils.fromFXImage(snapshot,null),"png",new File("src/main/resources/jimp/" + filename +".png"));
+            } catch(IOException exc) {
+                System.out.println("Failed to save image: " + exc);
+            }
+        });
+    }
+
+    private Canvas createCnvsBasedOnGb() {
+        Canvas canvas = new Canvas(gb.getX(),gb.getY()); //nieskalowane rozmiary
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        initGc(gc);
+        int skala = gb.getSKALA();
+
+
+        List<Rectangle> obstacles = gb.getObstacles();
+        for(Rectangle r : obstacles) {
+            //System.out.println("X,Y: " + r.getX() + " " + r.getY());
+            //System.out.println("WID, HEI: " + r.getWidth() + " " + r.getHeight());
+            gc.setFill(gb.getObstacleColor());
+            gc.fillRect(r.getX()*skala,r.getY()*skala
+                    ,r.getWidth()*skala,r.getHeight()*skala);
+        }
+
+
+
+        return canvas;
+    }
+
+    private void initGc(GraphicsContext gc) {
+        gc.setFill(gb.getBgColor());
+        gc.fillRect(0,0,gb.getX(),gb.getY());
+
+
+    }
 
 
 }

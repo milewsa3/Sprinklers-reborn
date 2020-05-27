@@ -79,7 +79,10 @@ public class MainController implements Initializable {
         }
         else {
             try {
-                Main.cycleTime = Integer.parseInt(cycleTimeField.getText());
+                int cT = Integer.parseInt(cycleTimeField.getText());
+                if(cT < 0)
+                    throw new NumberFormatException("The number has to be greater then 0");
+                Main.cycleTime = cT;
             }catch (NumberFormatException e){
                 isOk = false;
                 Alert alert = new Alert(Alert.AlertType.ERROR, "You have to provide number!");
@@ -117,6 +120,8 @@ public class MainController implements Initializable {
 
             if (x > 0 && x < 8001 && y > 0 && y < 4001)
                 Main.changeGardenBox(x,y);
+            else
+                throw new NumberFormatException("Wrong size");
         }
         catch(NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.ERROR, "You have to provide number!");

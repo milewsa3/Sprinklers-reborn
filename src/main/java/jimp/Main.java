@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -81,10 +82,12 @@ public class Main extends Application{
     //magia ktora sie dzieje po wcisnieciu przycisk start w UI
     public static void startCalculations() {
         String filename = "sprinkler_stats.txt"; //maybe from GUI
+        ParallelCalculation pc = null;
+        Thread t = null;
 
         if (nThreads == finalNThreads) {
-            ParallelCalculation pc = new ParallelCalculation(gardenBox, cycles, cycleTime, filename);
-            Thread t = new Thread(pc);
+            pc = new ParallelCalculation(gardenBox, cycles, cycleTime, filename);
+            t = new Thread(pc);
             //Blokada GUI i pokazanie krecacego koleczka czy cos
             //Blabla
             //buttonblock
@@ -102,6 +105,7 @@ public class Main extends Application{
             alert.setTitle("Wait for thread to complete calculations!");
             alert.show();
         }
+
     }
 
 
