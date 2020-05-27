@@ -80,10 +80,9 @@ public class Main extends Application{
 
     //magia ktora sie dzieje po wcisnieciu przycisk start w UI
     public static void startCalculations() {
-        //checkParameters(gardenBox, cycles, cycleTime)
         String filename = "sprinkler_stats.txt"; //maybe from GUI
 
-        if(nThreads == finalNThreads) {
+        if (nThreads == finalNThreads) {
             ParallelCalculation pc = new ParallelCalculation(gardenBox, cycles, cycleTime, filename);
             Thread t = new Thread(pc);
             //Blokada GUI i pokazanie krecacego koleczka czy cos
@@ -91,14 +90,18 @@ public class Main extends Application{
             //buttonblock
             nThreads++;
             t.start(); //Odblokowanie GUI tutaj (w srodku), moze trzeba przekazac cos do Paralela jeszcze, nwm
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Calculation started!");
+            alert.setHeaderText("Thread is calculating!");
+            alert.setTitle("Wait for thread to complete calculations!");
+            alert.show();
         }
-        else{
-            System.out.println("Wait for thread to complete");
-            //Show alert
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You have to wait for current calculations to finish!");
+            alert.setHeaderText("Thread is calculating!");
+            alert.setTitle("Wait for thread to complete calculations!");
+            alert.show();
         }
-
-
-
     }
 
 

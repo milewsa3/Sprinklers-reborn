@@ -72,14 +72,26 @@ public class MainController implements Initializable {
 
     @FXML
     void startAction(ActionEvent event) {
+        boolean isOk = true;
         Main.cycles = (int)cycleSlider.getValue();
         if(cycleTimeField.getText().equals("")){
             Main.cycleTime = 1;
         }
         else {
-            Main.cycleTime = Integer.parseInt(cycleTimeField.getText());
+            try {
+                Main.cycleTime = Integer.parseInt(cycleTimeField.getText());
+            }catch (NumberFormatException e){
+                isOk = false;
+                Alert alert = new Alert(Alert.AlertType.ERROR, "You have to provide number!");
+                alert.setHeaderText("Wrong number provided!");
+                alert.setTitle("Number format exception!");
+                alert.show();
+            }
         }
-        Main.startCalculations();
+
+        if(isOk)
+            Main.startCalculations();
+
     }
 
     @FXML
@@ -107,7 +119,11 @@ public class MainController implements Initializable {
                 Main.changeGardenBox(x,y);
         }
         catch(NumberFormatException e){
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You have to provide number!");
+            alert.setHeaderText("Wrong number provided!");
+            alert.setTitle("Number format exception!");
+            alert.show();
+            //e.printStackTrace();
         }
     }
     @FXML

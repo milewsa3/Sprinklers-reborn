@@ -1,6 +1,7 @@
 package jimp.model;
 
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import jimp.Main;
 import jimp.controllers.GardenBox;
 
@@ -43,8 +44,15 @@ public class ParallelCalculation implements Runnable{
                 }catch (FileNotFoundException e){
                     System.out.println(pop.printSprinklers());
                 }
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Calculation finished!");
+                alert.setHeaderText("Calculation finished!");
+                alert.setTitle("Calculation finished!");
+                alert.show();
+
             }
         });
+
         Main.nThreads--;
     }
 
