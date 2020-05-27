@@ -58,7 +58,7 @@ public class GardenBox extends VBox{
             selection.setX(event.getX());
             selection.setY(event.getY());
             selection.setFill(null); // transparent
-            selection.setStroke(Color.BLACK); // border
+            selection.setStroke(Color.WHITE); // border
             selection.getStrokeDashArray().add(10.0);
             ((Pane)gardenRegion).getChildren().add(selection);
         });
@@ -222,7 +222,7 @@ public class GardenBox extends VBox{
 
     private Region createClipped(int width, int height) {
         final Pane pane = new Pane();
-        pane.setBackground(new Background(new BackgroundFill(Color.web("#FF0000"), CornerRadii.EMPTY, Insets.EMPTY)));
+        pane.setBackground(new Background(new BackgroundFill(Color.rgb(0,40,25), CornerRadii.EMPTY, Insets.EMPTY)));
         pane.setMaxSize(width,height);
         pane.setMinSize(width,height);
         //pane.setPrefSize(width,height);

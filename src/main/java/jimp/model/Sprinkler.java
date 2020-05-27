@@ -5,7 +5,6 @@ import java.util.Random;
 /*Klasa reprezentujaca modelowy zraszacz. Nie skorzystalem  z polimorfizmu bo latwiej mi korzystac z jednej klasy
 z parametrami niz 16 plikow klas ktore troche sie roznia w obliczeniach.
  */
-
 public class Sprinkler implements Comparable<Sprinkler> {
     private int x;
     private int y;
@@ -65,6 +64,9 @@ public class Sprinkler implements Comparable<Sprinkler> {
     }
 
 
+    /**
+     * Metoda obliczajaca wynik dla pojedynczego zraszacza na podstawie obiektu GardenGrass
+     */
 
     public void calcScore(GardenGrass gardenGrass) {
         this.score = 0;

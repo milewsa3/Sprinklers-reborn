@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
@@ -63,22 +62,17 @@
                         <Insets left="50.0" />
                      </HBox.margin>
                   </VBox>
-                  <CheckBox fx:id="odbicieCheck" alignment="CENTER" contentDisplay="CENTER" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#odbicieKlik" prefWidth="80.0" text="Odbicie" textAlignment="CENTER">
-                     <HBox.margin>
-                        <Insets left="20.0" right="10.0" top="50.0" />
-                     </HBox.margin>
-                  </CheckBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Czas cyklu" />
-                        <TextField fx:id="cycleTimeField" alignment="CENTER" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="80.0" text="1">
+                        <Label text="Czas cyklu [ms]" />
+                        <TextField fx:id="cycleTimeField" alignment="CENTER" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="80.0" text="50">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </TextField>
                      </children>
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets left="20.0" right="10.0" />
                      </HBox.margin>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
