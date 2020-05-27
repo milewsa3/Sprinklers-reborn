@@ -1,6 +1,7 @@
 package jimp.model;
 
 import javafx.application.Platform;
+import jimp.Main;
 import jimp.controllers.GardenBox;
 
 import java.io.FileNotFoundException;
@@ -31,11 +32,9 @@ public class ParallelCalculation implements Runnable{
             public void run() {
                 //Tutaj odblokowanie GUI, bo juz po obliczeniu to teraz animacja juz na czysto
                 //ublock lalala
-                
+
                 pop.drawPopulation(gb);
                 gb.startAnimation(cycles, cycleTime);
-
-
 
                 try{
                     PrintWriter out = new PrintWriter(filename);
@@ -46,6 +45,7 @@ public class ParallelCalculation implements Runnable{
                 }
             }
         });
+        Main.nThreads--;
     }
 
 

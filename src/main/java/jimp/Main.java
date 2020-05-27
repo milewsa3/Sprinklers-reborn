@@ -38,6 +38,17 @@ public class Main extends Application{
     //odstępy w milisekundach
     public static int cycleTime;
 
+    public static int nThreads = 0;
+    public static int finalNThreads = 0;
+    {
+        for (Thread tt : Thread.getAllStackTraces().keySet()) {
+            if (tt.getState()==Thread.State.RUNNABLE) nThreads++;
+        }
+         finalNThreads = nThreads;
+    }
+
+
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -71,15 +82,21 @@ public class Main extends Application{
     public static void startCalculations() {
         //checkParameters(gardenBox, cycles, cycleTime)
         String filename = "sprinkler_stats.txt"; //maybe from GUI
-        ParallelCalculation pc = new ParallelCalculation(gardenBox, cycles, cycleTime, filename);
-        Thread t = new Thread(pc);
 
-        //Blokada GUI i pokazanie krecacego koleczka czy cos
-        //Blabla
-        //buttonblock
+        if(nThreads == finalNThreads) {
+            ParallelCalculation pc = new ParallelCalculation(gardenBox, cycles, cycleTime, filename);
+            Thread t = new Thread(pc);
+            //Blokada GUI i pokazanie krecacego koleczka czy cos
+            //Blabla
+            //buttonblock
+            nThreads++;
+            t.start(); //Odblokowanie GUI tutaj (w srodku), moze trzeba przekazac cos do Paralela jeszcze, nwm
+        }
+        else{
+            System.out.println("Wait for thread to complete");
+            //Show alert
+        }
 
-
-        t.start(); //Odblokowanie GUI tutaj (w srodku), moze trzeba przekazac cos do Paralela jeszcze, nwm
 
 
     }
