@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jimp.controllers.MainController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jimp.controllers.MainController">
    <top>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -88,6 +88,15 @@
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Długość ogrodu" />
                         <TextField fx:id="yTextField" alignment="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" text="4000" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="590.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Nazwa obrazu" />
+                        <TextField fx:id="imgNameTf" alignment="CENTER" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" text="Garden" />
                      </children>
                      <padding>
                         <Insets left="10.0" />

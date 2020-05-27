@@ -71,8 +71,12 @@ public class MainController implements Initializable {
     private Slider cycleSlider;
 
     @FXML
+    private TextField imgNameTf;
+
+    @FXML
     void startAction(ActionEvent event) {
         boolean isOk = true;
+        Main.filename = imgNameTf.getText();
         Main.cycles = (int)cycleSlider.getValue();
         if(cycleTimeField.getText().equals("")){
             Main.cycleTime = 1;

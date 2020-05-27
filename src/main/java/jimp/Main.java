@@ -38,6 +38,9 @@ public class Main extends Application{
     public static int cycles;
     //odstępy w milisekundach
     public static int cycleTime;
+    //nazwa generowanego pliku
+    public static String filename = "Garden";
+
 
     public static int nThreads = 0;
     public static int finalNThreads = 0;
@@ -81,7 +84,6 @@ public class Main extends Application{
 
     //magia ktora sie dzieje po wcisnieciu przycisk start w UI
     public static void startCalculations() {
-        String filename = "sprinkler_stats.txt"; //maybe from GUI
         ParallelCalculation pc = null;
         Thread t = null;
 

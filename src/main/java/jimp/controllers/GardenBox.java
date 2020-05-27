@@ -249,6 +249,10 @@ public class GardenBox extends VBox{
         return obstacles;
     }
 
+    public List<Shape> getSprinklers() {
+        return sprinklers;
+    }
+
     public Color getObstacleColor() {
         return obstacleColor;
     }

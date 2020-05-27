@@ -8,7 +8,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Arc;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import jimp.Main;
 import jimp.controllers.GardenBox;
 
@@ -49,7 +51,7 @@ public class ParallelCalculation implements Runnable{
                 gb.startAnimation(cycles, cycleTime);
 
                 try{
-                    PrintWriter out = new PrintWriter(filename);
+                    PrintWriter out = new PrintWriter(filename + "_statystyki.txt");
                     out.println(pop.printSprinklers());
                     out.close();
                 }catch (FileNotFoundException e){
@@ -100,6 +102,25 @@ public class ParallelCalculation implements Runnable{
         int skala = gb.getSKALA();
 
 
+        List<Shape> sprinklers = gb.getSprinklers();
+        for(Shape s : sprinklers) {
+            Arc arc = (Arc)s;
+            gc.setFill(gb.getSprinklerColor());
+            double radiusX = arc.getRadiusX() * skala * 2;
+            double radiusY = arc.getRadiusY() * skala * 2;
+            double centerX = arc.getCenterX() * skala - radiusX/2;
+            double centerY = arc.getCenterY() * skala - radiusY/2;
+            double startAngle = arc.getStartAngle();
+            double length = arc.getLength();
+            gc.fillArc((centerX)
+                    ,centerY
+                    ,radiusX
+                    ,radiusY
+                    ,startAngle
+                    ,length
+                    ,arc.getType());
+        }
+
         List<Rectangle> obstacles = gb.getObstacles();
         for(Rectangle r : obstacles) {
             //System.out.println("X,Y: " + r.getX() + " " + r.getY());
@@ -117,8 +138,6 @@ public class ParallelCalculation implements Runnable{
     private void initGc(GraphicsContext gc) {
         gc.setFill(gb.getBgColor());
         gc.fillRect(0,0,gb.getX(),gb.getY());
-
-
     }
 
 
