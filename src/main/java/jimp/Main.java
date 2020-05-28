@@ -63,8 +63,16 @@ public class Main extends Application{
 
     public static void changeGardenBox(int x, int y)
     {
-        gardenBox = new GardenBox(x,y);
-        ((BorderPane) root).setBottom(gardenBox);
+        if (nThreads == finalNThreads) {
+            gardenBox = new GardenBox(x, y);
+            ((BorderPane) root).setBottom(gardenBox);
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You have to wait for current calculations to finish!");
+            alert.setHeaderText("Thread is calculating!");
+            alert.setTitle("Wait for thread to complete calculations!");
+            alert.show();
+        }
     }
     @Override
     public void start(Stage primaryStage) throws IOException {
