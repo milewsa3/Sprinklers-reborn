@@ -88,7 +88,7 @@ public class ParallelCalculation implements Runnable{
             try {
                 Image snapshot = canvas.snapshot(null,null);
 
-                ImageIO.write(SwingFXUtils.fromFXImage(snapshot,null),"png",new File("src/main/resources/jimp/" + filename +".png"));
+                ImageIO.write(SwingFXUtils.fromFXImage(snapshot,null),"png",new File(filename +".png"));
             } catch(IOException exc) {
                 System.out.println("Failed to save image: " + exc);
             }

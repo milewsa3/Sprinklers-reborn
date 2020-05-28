@@ -98,6 +98,7 @@ public class Main extends Application{
         if (nThreads == finalNThreads) {
             pc = new ParallelCalculation(gardenBox, cycles, cycleTime, filename);
             t = new Thread(pc);
+            t.setDaemon(true);
             //Blokada GUI i pokazanie krecacego koleczka czy cos
             //Blabla
             //buttonblock
